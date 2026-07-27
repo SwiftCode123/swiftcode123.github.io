@@ -1,341 +1,365 @@
-
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-    --bg: #0A0A0F;
-    --surface: #111118;
-    --border: #1E1E2E;
-    --cyan: #00F5D4;
-    --cyan-dim: rgba(0, 245, 212, 0.12);
-    --grey: #8A8A9A;
-    --text: #F0F0F8;
-    --font: 'JetBrains Mono', monospace;
+  --bg: #0A0A0F;
+  --surface: #111118;
+  --border: #1E1E2E;
+  --cyan: #00F5D4;
+  --cyan-dim: rgba(0, 245, 212, 0.12);
+  --grey: #8A8A9A;
+  --text: #F0F0F8;
+  --font: 'JetBrains Mono', monospace;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--font);
-    font-size: 14px;
-    line-height: 1.7;
-    min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 100vh;
 }
 
-/* ── Layout ── */
+/* ── Two-column layout ── */
 .page {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 72px 24px 120px;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  min-height: 100vh;
+  max-width: 1140px;
+  margin: 0 auto;
 }
+
+.left-col {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 64px 40px 64px 48px;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.right-col {
+  padding: 64px 56px 100px 56px;
+  overflow-y: auto;
+}
+
+.right-col section { margin-bottom: 48px; }
 
 /* ── Header ── */
-.header { margin-bottom: 56px; }
+.header { margin-bottom: 0; }
 
 .name-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
 h1 {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text);
 }
 
 .cursor {
-    display: inline-block;
-    width: 2px;
-    height: 1.1em;
-    background: var(--cyan);
-    margin-left: 4px;
-    vertical-align: middle;
-    animation: blink 1.1s step-end infinite;
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--cyan);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1.1s step-end infinite;
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.theme-icon {
-    font-size: 20px;
-    cursor: default;
-    user-select: none;
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 .bio {
-    color: var(--grey);
-    font-size: 13px;
-    max-width: 520px;
+  color: var(--grey);
+  font-size: 12px;
+  line-height: 1.8;
 }
 
 .bio .highlight {
-    color: var(--cyan);
-    font-weight: 500;
+  color: var(--cyan);
+  font-weight: 500;
 }
 
-/* ── Section ── */
-section { margin-bottom: 52px; }
+/* ── Section label ── */
+section { margin-bottom: 0; }
 
 .section-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--grey);
-    margin-bottom: 18px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 /* ── Contact pills ── */
-.contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
+.contact-row { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.left-contact { flex-direction: column; }
 
 .pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 14px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-family: var(--font);
-    font-size: 12px;
-    color: var(--grey);
-    text-decoration: none;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-    cursor: pointer;
-    background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 12px;
+  color: var(--grey);
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  background: transparent;
 }
 
 .pill:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-    background: var(--cyan-dim);
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: var(--cyan-dim);
 }
 
 .pill svg { flex-shrink: 0; }
 
 /* ── Project cards ── */
 .project-card {
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 18px 20px;
-    margin-bottom: 10px;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-    background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px;
+  margin-bottom: 10px;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--surface);
 }
 
 .project-card:hover { border-color: var(--cyan); background: var(--cyan-dim); }
 
 .project-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
 
 .project-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text);
-}
-
-.project-tag {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--cyan);
-    background: var(--cyan-dim);
-    border: 1px solid rgba(0,245,212,0.25);
-    border-radius: 4px;
-    padding: 2px 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
 }
 
 .project-desc {
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--grey);
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--grey);
+  line-height: 1.75;
 }
 
-.chevron {
-    color: var(--grey);
-    font-size: 11px;
-    transition: color 0.2s;
+/* ── Card meta (date + github btn) ── */
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
-.project-card:hover .chevron { color: var(--cyan); }
-
-/* ── Posts ── */
-.posts-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 4px;
+.card-date {
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
 }
 
-.view-all {
-    font-size: 11px;
-    color: var(--grey);
-    text-decoration: none;
-    transition: color 0.2s;
+.gh-btn {
+  color: var(--grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  transition: color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
 }
 
-.view-all:hover { color: var(--cyan); }
-
-.post-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-    cursor: pointer;
-    transition: color 0.15s;
-    text-decoration: none;
+.gh-btn:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
 }
 
-.post-row:last-child { border-bottom: none; }
+/* ── Coming soon card ── */
+.coming-soon { opacity: 0.5; cursor: default; }
+.coming-soon:hover { border-color: var(--border); background: var(--surface); }
 
-.post-title {
-    font-size: 13px;
-    color: var(--text);
-    transition: color 0.15s;
+.coming-soon-badge {
+  font-size: 11px;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
 }
 
-.post-row:hover .post-title { color: var(--cyan); }
-
-.post-date {
-    font-size: 12px;
-    color: var(--grey);
-    white-space: nowrap;
-    margin-left: 16px;
+/* ── Certifications ── */
+.cert-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
-/* ── Skills grid ── */
-.skills-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
+.cert-card {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 16px;
+  gap: 12px;
+  cursor: default;
 }
 
-.skill-chip {
-    font-size: 11px;
-    color: var(--grey);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 4px 10px;
-    background: var(--surface);
+.cert-card img {
+  width: 68px;
+  height: 68px;
+  object-fit: contain;
 }
 
-/* ── Footer ── */
-footer {
-    margin-top: 80px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    font-size: 11px;
-    color: var(--border);
-    display: flex;
-    justify-content: space-between;
+.cert-info {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
-@media (max-width: 520px) {
-    h1 { font-size: 21px; }
-    .page { padding: 48px 18px 80px; }
-    footer { flex-direction: column; gap: 4px; }
+.cert-info .project-name { font-size: 12px; }
+
+.cert-badge {
+  font-size: 11px;
+  color: var(--cyan);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(0, 245, 212, 0.3);
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: background 0.2s;
 }
 
-@media (prefers-reduced-motion: reduce) {
-    .cursor { animation: none; opacity: 1; }
-}
+.cert-badge:hover { background: var(--cyan-dim); }
 
 /* ── Decrypt Intro ── */
 #intro {
-    position: fixed;
-    inset: 0;
-    background: var(--bg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    z-index: 999;
-    transition: opacity 0.5s ease;
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  z-index: 999;
+  transition: opacity 0.5s ease;
 }
 
 #intro.fade-out { opacity: 0; pointer-events: none; }
 
 .lock-wrap {
-    position: relative;
-    width: 52px;
-    height: 52px;
+  position: relative;
+  width: 52px;
+  height: 52px;
 }
 
 .lock-icon {
-    position: absolute;
-    inset: 0;
-    transition: opacity 0.3s ease;
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s ease;
 }
 
 .lock-icon svg {
-    width: 52px;
-    height: 52px;
-    stroke: var(--cyan);
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+  width: 52px;
+  height: 52px;
+  stroke: var(--cyan);
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 #lock-closed { opacity: 1; }
 #lock-open   { opacity: 0; }
 
 .decrypt-text {
-    font-family: var(--font);
-    font-size: 13px;
-    color: var(--grey);
-    letter-spacing: 0.12em;
-    min-width: 180px;
-    text-align: center;
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--grey);
+  letter-spacing: 0.12em;
+  min-width: 180px;
+  text-align: center;
 }
 
 .decrypt-text span { color: var(--cyan); }
 
 .decrypt-bar {
-    width: 180px;
-    height: 2px;
-    background: var(--border);
-    border-radius: 2px;
-    overflow: hidden;
+  width: 180px;
+  height: 2px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
 }
 
 .decrypt-bar-fill {
-    height: 100%;
-    width: 0%;
-    background: var(--cyan);
-    border-radius: 2px;
-    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  width: 0%;
+  background: var(--cyan);
+  border-radius: 2px;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .main-content {
-    opacity: 0;
-    transition: opacity 0.45s ease;
+  opacity: 0;
+  transition: opacity 0.45s ease;
 }
 
 .main-content.visible { opacity: 1; }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .page {
+    grid-template-columns: 1fr;
+  }
+
+  .left-col {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 48px 24px 40px;
+  }
+
+  .right-col {
+    padding: 40px 24px 80px;
+  }
+
+  .left-contact { flex-direction: row; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor { animation: none; opacity: 1; }
+}
