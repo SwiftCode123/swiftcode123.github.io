@@ -116,7 +116,7 @@ html, body {
   justify-content: space-between;
   padding: 16px 48px;
   border-bottom: 1px solid var(--border);
-  background: rgba(5, 5, 13, 0.92);
+  background: rgba(5,5,13,0.92);
   backdrop-filter: blur(8px);
   z-index: 1000;
 }
@@ -134,7 +134,6 @@ html, body {
   letter-spacing: 0.05em;
 }
 
-/* Terminal Hamburger Button */
 .nav-toggle {
   display: none;
   background: transparent;
@@ -617,7 +616,7 @@ html, body {
   margin-top: 4px;
 }
 
-/* ── Field Notes ── */
+/* ── Writeups / Field Notes ── */
 .notes-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
